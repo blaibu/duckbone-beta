@@ -130,7 +130,7 @@ so that it will either blow up or emit nothing without explicit work by the deve
       }, defaultSyncOptions, options);
 
       // workaround IE's aggressive caching of JSON
-      if ($.browser.msie) params.cache = false;
+      // if ($.browser.msie) params.cache = false;
 
       // Ensure URL, and then append .json to it
       if (!params.url) {
