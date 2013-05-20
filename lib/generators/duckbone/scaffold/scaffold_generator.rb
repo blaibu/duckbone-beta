@@ -35,7 +35,7 @@ module Duckbone
       end
 
       def add_js_routes
-        inject_into_file "app/assets/javascripts/duckbone/#{application_name.underscore}.js.coffee", :after => "\n    @mapRoutes {" do
+        inject_into_file "app/assets/javascripts/duckbone/#{application_name.underscore}.js", :after => "\n    @mapRoutes {" do
           {"" => "Index", "/:id" => "Show", "/new" => "New", "/:id/edit" => "Edit"}.inject("") do |memo, pair|
             memo + "\n      '#{class_name.underscore.pluralize}#{pair.first}': #{application_name}.Views.#{class_name.pluralize}#{pair.last}"
           end
@@ -44,10 +44,10 @@ module Duckbone
 
       def generate_files
         # Models
-        template "model.coffee", "#{js_dir}/models/#{class_name.underscore}.js.coffee"
+        template "model.js", "#{js_dir}/models/#{class_name.underscore}.js"
         # Views
         %w(index show new edit).each do |view_name|
-          template "#{view_name}.coffee", "#{js_dir}/views/#{class_name.underscore.pluralize}/#{view_name}.js.coffee"
+          template "#{view_name}.js", "#{js_dir}/views/#{class_name.underscore.pluralize}/#{view_name}.js"
         end
         # Templates
         %w(item index show _form new edit).each do |template_name|
